@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+
+<body style="background-color: rgb(47, 153, 118); color: white;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">CARIDADE</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button> 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#c" >Services</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="data.html">News</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link " href="#team">About Us</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+<h2 style="text-align: center; font-size: 40px;">EMERGENCY REPORTS</h2>
+ <p id="demo" class="table table-striped"></p> 
+<script>
+var oXHR = new XMLHttpRequest();
+    oXHR.onreadystatechange = function() {
+        if (oXHR.readyState == 4&&this.status==200) {		
+            var jsondata = JSON.parse(this.responseText);
+            var tableBody = '<table style="border: solid 5px;" ><tr><td style="border: solid 5px #DDD;">Index</td><td style="border: solid 5px #DDD;"> Contact Details (twitter username)</td><td style="border: solid 5px #DDD;">Emergency-reports</td><td style="border: solid 5px #DDD;">Time</td>';
+            jsondata.forEach(function(d)
+            {
+             tableBody += '<tr><td style="border: solid 1px #DDD;">'+d.Index+'</td><td style="border: solid 1px #DDD;">'+d.Username+'</td><td style="border: solid 1px #DDD;">'+d.Entire_text+'</td><td style="border: solid 1px #DDD;">'+d.Timestamp+'</td></tr>';   
+              });
+             tableBody += '<table>';
+           var divContainer = document.getElementById("demo");
+           divContainer.innerHTML = tableBody;
+        }
+    }
+    oXHR.open("GET", "csvjson.json", true);  // get json file.
+    oXHR.send();
+</script>
+<footer class="page-footer font-small blue pt-4" style="background-color: rgb(29, 116, 75);" >
+    <div class="container-fluid text-center text-md-left">
+      <div class="row">
+        <div class="col-md-6 mt-md-0 mt-3">
+          <h5 class="text-uppercase">Caridade </h5>
+          <p>The charity tonight launched its great crusade against homelessness.</p>
+          <p>For any queries contact our team members. </p>     
+        </div>
+        <hr class="clearfix w-100 d-md-none pb-3">
+      </div>
+    </div>
+    <div class="footer-copyright text-center py-3">© 2021 Copyright
+    </div>
+  </footer>
+
+</body>
+</html>
